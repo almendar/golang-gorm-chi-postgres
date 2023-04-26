@@ -1,0 +1,58 @@
+basePath: /api/v1
+definitions:
+  dogowners.Dog:
+    properties:
+      birthday:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  dogowners.Owner:
+    properties:
+      dogs:
+        items:
+          $ref: '#/definitions/dogowners.Dog'
+        type: array
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+externalDocs:
+  description: OpenAPI
+  url: https://swagger.io/resources/open-api/
+host: localhost:3000
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a sample server celler server.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Swagger Example API
+  version: "1.0"
+paths:
+  /owner:
+    get:
+      description: get all owners
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/dogowners.Owner'
+            type: array
+      summary: List owners
+      tags:
+      - owners
+securityDefinitions:
+  BasicAuth:
+    type: basic
+swagger: "2.0"
